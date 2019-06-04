@@ -1,0 +1,48 @@
+version: '3'
+services:
+  # MYSQL
+  db:
+    image: mysql:5.7
+    expose:
+      - "3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+    volumes:
+      - ./.docker/mysql/data:/var/lib/mysql
+      - ./.docker/mysql/dump:/docker-entrypoint-initdb.d
+      - ./.docker/mysql/log:/var/log/mysql
+      - ./.docker/mysql/conf:/etc/mysql/conf.d
+  
+  #PHPMyAdmin
+  pma:
+    image: 'phpmyadmin/phpmyadmin'
+    restart: always 
+    environment:
+      PMA_HOST: db
+    ports:
+      - "9001:80"
+
+  # PHP
+  phpfpm:
+    build: 
+      context: .
+      dockerfile: ./.docker/php/Dockerfile
+    links:
+      - db:db
+    volumes:
+      - ./.docker/php/php-fpm.conf:/usr/local/etc/php-fpm.conf
+      - ./.docker/php/php.ini:/usr/local/etc/php/php.ini
+      - ./.docker/php/log:/var/log/php-fpm
+      - ./src:/var/www/html
+
+  # NGINX
+  nginx:
+    image: nginx:1.15
+    ports:
+      - "8000:80"
+    links:
+      - phpfpm:phpfpm
+    volumes:
+      - ./.docker/nginx/conf.d:/etc/nginx/conf.d
+      - ./src:/var/www/html
+      - ./.docker/nginx/log:/var/log/nginx
