@@ -111,67 +111,6 @@
             $this->form->objects[0]->setValidator($this->validator->objects[1]);
             /// FIN TAB 2 ///
             
-            /// INICIO TAB 3 ///
-            // $this->ajax = new ajax_class("ajax_template_self","ajax_template_self");
-            $this->ajax->next($this->filename);
-			$this->ajax->getLast()->populate(
-                array(
-				    "iduser",
-                ),
-                function(){
-                    $check=array(
-                        "iduser"=>array('isset'=>'','notempty'=>'Favor de ingresar un Usuario','appendquotes'=>"'"),
-                    );
-                    if($this->validator->validator($check, 'post')){
-                        $this->connection->query(
-                            $this->sqlbuilder->update("punto_venta",array(
-                                "cerrarCaja"=>"'?'"
-                            ))
-                            ->where(array(
-                                "idUser"=>"'?'"
-                            ))
-                            ->setParams(1,$this->idUser)
-                            ->getSql()
-                        );
-
-                        $data["success"]=0;
-                        $data["eval"]="location.reload();";
-                        echo json_encode($data);
-                        die();
-                    }else{
-                        $data["error"]=$this->validator->getError();
-                    }
-                    echo json_encode($data);
-                    die();
-                }
-            );
-            $this->sqlbuilder->cleanSql();
-            $this->table->next($this->filename);
-            $this->table->objects[0]->populate(
-                array(
-                    "sum(punto_venta_pago.cantidad)"=>array("display"=>true,'link'=>false,'as'=>'# Usuario',"sort"=>true,"mysqlas"=>"id"),
-                    "payment_method.name_pm"=>array("display"=>true,'link'=>false,'as'=>'Nombre',"sort"=>true,"searchfull"=>true,"mysqlas"=>"name","td"=>false),
-                ),
-                "punto_venta_pago",
-                $this->sqlbuilder->setTable("punto_venta_pago")
-                    ->join("punto_venta","idPV","idPV")
-                    ->join("payment_method","payment_method_id","id")
-                    ->where(array(
-                        "idUser"=>"'?'",
-                        "cerrarCaja"=>"'?'"
-                    ))
-                    ->groupBy("punto_venta_pago.payment_method_id")
-                    ->setParams($_GET["id"],0)
-                    ->getSql(),
-                function($data,$value,$key){
-                    global $filename;
-                    global $html;
-                    switch($key){
-
-                    }
-                },$filename,$filename
-            );
-            /// FIN TAB 3 ///
             $this->view = $this->data;
         }
         function agregar() {

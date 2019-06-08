@@ -11,16 +11,6 @@
 				$this->form->objects[0]->createFullString(),
 				"Permisos"
 			);
-			// print_r($this->ajax->objects[0]->generateFunc($u_id));
-			$this->tabbs->newTabb('<div>
-						<p style="float:right;"> 
-							<a href="#" onclick="'.$this->ajax->objects[0]->generateFunc($u_id).'" class="prettyPhoto btn btn-danger">
-								Cerrar Caja
-							</a> 
-						</p>
-					</div>'.$this->ajax->objects[0]->create().$this->table->objects[0]->createTableString(),
-					"Ventas en caja"
-				);
 			$this->data["edit"]=$this->tabbs->constructString();
 			$this->data["breadcrumb"]=array(
 				"admin_index",
