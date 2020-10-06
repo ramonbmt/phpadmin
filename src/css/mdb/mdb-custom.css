@@ -1,0 +1,105 @@
+:root {
+  --bmt-orange: #D98918;
+  --bmt-orange-light: #EBB200;
+  --bmt-green: #22B173;
+  --bmt-gray: #DADADA;
+  --bmt-gray-light: #EEEEEE;
+  --bmt-gray-dark: #55565A;
+  --bs-warning: #F18800;
+}
+
+.bg-orange {
+    background-color: var(--bmt-orange) !important;
+}
+.bg-gray {
+    background-color: var(--bmt-gray) !important;
+}
+.bg-gray-light {
+    background-color: var(--bmt-gray-light) !important;
+}
+.bg-gray-dark {
+    background-color: var(--bmt-gray-dark) !important;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.breadcrumb-item + .breadcrumb-item:before {
+    color: #757575;
+    content: "›";
+}
+.breadcrumb-item.active {
+    color: var(--bs-warning);
+}
+
+.input-group > .form-control:focus {
+  box-shadow: inset 0 0 0 1px var(--bs-green);
+}
+
+.ripple-surface {
+  display: block;
+}
+
+.btn-qty-actions {
+  border: 1px solid #bdbebd;
+  background-color: var(--bmt-gray-light)
+}
+
+.beneficios-bmt-title{
+  font-size: 1.3em;
+  font-weight: 600;
+}
+
+.carousel-indicators{
+  bottom: -35px;
+}
+
+.carousel-indicators li {
+  background-color: #635757;
+}
+
+/* radio */
+
+.form-check-input[type="radio"]:checked:after {
+    border-color: var(--bs-warning);
+    background-color: var(--bs-warning);
+}
+
+/* inputs */
+.input-group > .form-control:focus {
+    border-color: var(--bmt-green);
+    -webkit-box-shadow: inset 0 0 0 1px var(--bmt-green);
+    box-shadow: inset 0 0 0 1px var(--bmt-green);
+}
+.form-control:focus {
+    border-color: var(--bmt-green);
+}
+
+.form-outline .form-control:focus ~ .form-label {
+    color: var(--bmt-green);
+}
+.form-outline .form-control:focus ~ .form-notch .form-notch-middle {
+    border-color: var(--bmt-green);
+}
+.form-outline .form-control:focus ~ .form-notch .form-notch-leading {
+    border-top: 0.125em solid var(--bmt-green);
+    border-bottom: 0.125em solid var(--bmt-green);
+    border-left: 0.125em solid var(--bmt-green);
+}
+.form-outline .form-control:focus ~ .form-notch .form-notch-trailing {
+    border-color: currentcolor currentcolor currentcolor var(--bmt-green);
+    border-bottom: 0.125em solid var(--bmt-green);
+    border-right: 0.125em solid var(--bmt-green);
+    border-top: 0.125em solid var(--bmt-green);
+}
+
+.page-item.active .page-link {
+  background-color: var(--bs-warning);
+}
+
+.page-link:hover {
+  color: white;
+  background-color: var(--bs-warning);
+}
