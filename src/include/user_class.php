@@ -79,10 +79,9 @@ public $permiso;
 		global $mail;
 		global $config;
 		global $html;
-		$result_user=$connection->query("select id,email from users where email='?'",$email);
-		if(!isset($result_user[0]['email']))
-		{
-			return false;
+		$result_user=$connection->query("SELECT id,user_name, name, lastname from users where email='?'",$email);
+		if(!isset($result_user[0]['user_name'])){
+			return array("response"=>false,"message"=>"No existe ningún usuario registrado con el correo <strong>".$email."</strong>");
 		}
 
 		$mail->IsSMTP(); // Use SMTP
@@ -127,10 +126,10 @@ public $permiso;
 				$error.='Mailer Error: ' . $mail->ErrorInfo;
 				echo $error;
 			}
-		   return false;
+		    return array("response"=>false,"message"=>$error);
 		}
 		$mail->SmtpClose();
-		return true;
+		return array("response"=>true,"message"=>$result_user[0]["name"]);
 	}
 	function changePassword($hash,$password){
 		global $connection;
