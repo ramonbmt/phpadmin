@@ -1,18 +1,5 @@
 <?php
 	$str="";
-	/*if(isset($_REQUEST)){
-		$str="";
-		$i_str=0;
-		foreach($_REQUEST as $key=>$value){
-			if($i_str==0){
-				$str.="/?";
-			}
-			$str.="".$key."=".$value."&";
-			$i_str++;
-		}
-	}*/
-	//var_dump($this);
-	
 	$action="";
 	$requestURI=urldecode($_SERVER['REQUEST_URI']);
 	$requestURI = explode('/', $requestURI);
@@ -25,10 +12,10 @@
 	$str=http_build_query(array_merge($_GET,$_POST));
 	//echo $this->n_pages;
 ?>
-<div class="widget-bottom">
-	<div class="dataTables_paginate paging_full_numbers" id="website_pagination_<?php echo $this->page_type; ?>">
-		<a onclick="getPage_<?php  echo $this->page_type; ?>(event, 0,'<?php echo $this->page_type; ?>');" tabindex="0" class="first paginate_button <?php if($this->current_page==0){ ?>paginate_button_disabled<?php } ?>" id="DataTables_Table_2_first">Primero</a>
-		<a onclick="getPage_<?php  echo $this->page_type; ?>(event, <?php echo $this->current_page-1; ?>,'<?php echo $this->page_type; ?>');" tabindex="0" class="previous paginate_button <?php if($this->current_page==0){ ?>paginate_button_disabled<?php } ?>" id="DataTables_Table_2_previous">Anterior</a>
+<nav aria-label="...">
+    <ul class="pagination dataTables_paginate paging_full_numbers" id="website_pagination_<?php echo $this->page_type; ?>">
+		<li class="page-item"><a onclick="getPage_<?php  echo $this->page_type; ?>(event, 0,'<?php echo $this->page_type; ?>');" tabindex="0" class="page-link first paginate_button <?php if($this->current_page==0){ ?>paginate_button_disabled<?php } ?>" id="DataTables_Table_2_first">Primero</a></li>
+		<li class="page-item"><a onclick="getPage_<?php  echo $this->page_type; ?>(event, <?php echo $this->current_page-1; ?>,'<?php echo $this->page_type; ?>');" tabindex="0" class="page-link previous paginate_button <?php if($this->current_page==0){ ?>paginate_button_disabled<?php } ?>" id="DataTables_Table_2_previous">Anterior</a></li>
 		<span>
 			<?php
 				if($this->n_pages>10)
@@ -38,11 +25,11 @@
 				for($i=0;$i<$n;$i++){
 					if($i==0){
 			?>
-						<a tabindex="0" class="paginate_active" onclick="getPage_<?php  echo $this->page_type; ?>(event,<?php echo $i; ?>,'<?php echo $this->page_type; ?>');"><?php echo $i+1; ?></a>
+						<li class="page-item"><a tabindex="0" class="page-link paginate_active" onclick="getPage_<?php  echo $this->page_type; ?>(event,<?php echo $i; ?>,'<?php echo $this->page_type; ?>');"><?php echo $i+1; ?></a></li>
 			<?php
 					}else{
 			?>
-						<a tabindex="0" class="paginate_button" onclick="getPage_<?php  echo $this->page_type; ?>(event,<?php echo $i; ?>,'<?php echo $this->page_type; ?>');"><?php echo $i+1; ?></a>
+						<li class="page-item"><a tabindex="0" class="page-link paginate_button" onclick="getPage_<?php  echo $this->page_type; ?>(event,<?php echo $i; ?>,'<?php echo $this->page_type; ?>');"><?php echo $i+1; ?></a></li>
 			<?php
 					}
 			?>
@@ -50,16 +37,15 @@
 				}
 				if($this->n_pages>10){
 			?>
-				... <a tabindex="0" class="paginate_button" onclick="getPage_<?php  echo $this->page_type; ?>(event,<?php echo floor($this->n_pages); ?>,'<?php echo $this->page_type; ?>');"><?php echo floor($this->n_pages+1); ?></a>
+				... <li class="page-item"><a tabindex="0" class="page-link paginate_button" onclick="getPage_<?php  echo $this->page_type; ?>(event,<?php echo floor($this->n_pages); ?>,'<?php echo $this->page_type; ?>');"><?php echo floor($this->n_pages+1); ?></a></li>
 			<?php
 				}
 			?>
 		</span>
-		<a onclick="getPage_<?php  echo $this->page_type; ?>(event, <?php echo $this->current_page+1; ?>,'<?php echo $this->page_type; ?>');" tabindex="0" class="next paginate_button <?php if($this->current_page==$this->n_pages){ ?>paginate_button_disabled<?php } ?>" id="DataTables_Table_2_next">Siguiente</a>
-		<a onclick="getPage_<?php  echo $this->page_type; ?>(event, <?php echo ceil($this->n_pages-1); ?>,'<?php echo $this->page_type; ?>');" tabindex="0" class="last paginate_button <?php if($this->current_page==$this->n_pages){ ?>paginate_button_disabled<?php } ?>" id="DataTables_Table_2_last">Ultimo</a>
-	</div>
-	<div class="clear"></div>
-</div>
+		<li class="page-item"><a onclick="getPage_<?php  echo $this->page_type; ?>(event, <?php echo $this->current_page+1; ?>,'<?php echo $this->page_type; ?>');" tabindex="0" class="page-link next paginate_button <?php if($this->current_page==$this->n_pages){ ?>paginate_button_disabled<?php } ?>" id="DataTables_Table_2_next">Siguiente</a></li>
+		<li class="page-item"><a onclick="getPage_<?php  echo $this->page_type; ?>(event, <?php echo ceil($this->n_pages-1); ?>,'<?php echo $this->page_type; ?>');" tabindex="0" class="page-link last paginate_button <?php if($this->current_page==$this->n_pages){ ?>paginate_button_disabled<?php } ?>" id="DataTables_Table_2_last">Último</a></li>
+	</ul>
+</nav>
 <script>
 	var pagiantion=0;
 	var current_page=<?php echo $this->current_page; ?>;
@@ -72,12 +58,12 @@
 			//alert("hola");
 			return;
 		}
-		var sort=$.toJSON(sorting_<?php  echo $this->page_type; ?>);
+		var sort=JSON.stringify(sorting_<?php  echo $this->page_type; ?>);
 		var str2={};
 		$(".ajax_search_<?php echo $this->page_type; ?>").map(function(){
 			str2[$(this).attr("name")]=$(this).val();
 		});
-		var str=$.toJSON(str2);
+		var str=JSON.stringify(str2);
 		$.post('<?php echo $html->link($this->filename).$action."/?".$str; ?>', {action:"pagination",ajax:1,type: page_type, page: page, 
 		args:args, ajax:1, sort:sort, str:str,table:"<?php echo $this->page_type; ?>"},
 		function(data) {
@@ -116,8 +102,8 @@
 		}
 		var offset=0;
 		var str='';
-		str+='<a onclick="getPage_'+page_type+'(event, 0, \''+page_type+'\');" tabindex="0" class="first paginate_button '+disabled+'" id="DataTables_Table_2_first">Primero</a>';
-		str+='<a onclick="getPage_'+page_type+'(event, '+(current_page-1)+', \''+page_type+'\');" tabindex="0" class="previous paginate_button '+disabled+'" id="DataTables_Table_2_previous">Anterior</a>';
+		str+='<li class="page-item"><a onclick="getPage_'+page_type+'(event, 0, \''+page_type+'\');" tabindex="0" class="page-link '+disabled+'" id="DataTables_Table_2_first">Primero</a></li>';
+		str+='<li class="page-item"><a onclick="getPage_'+page_type+'(event, '+(current_page-1)+', \''+page_type+'\');" tabindex="0" class="page-link previous paginate_button '+disabled+'" id="DataTables_Table_2_previous">Anterior</a></li>';
 		str+='<span>';
 		/*for(var i=0;i<data.count/num_display;i++){
 			if(i==current_page){
@@ -134,29 +120,29 @@
 			}
 			for(var i=(current_page-4);i<=n_pages;i++){
 				if(i==current_page){
-					str+='<a tabindex="0" class="paginate_active" onclick="getPage_'+page_type+'(event,'+i+', \''+page_type+'\');">'+(i+1)+'</a>';
+					str+='<li class="page-item"><a tabindex="0" class="page-link paginate_active" onclick="getPage_'+page_type+'(event,'+i+', \''+page_type+'\');">'+(i+1)+'</a></li>';
 				}else{
-					str+='<a tabindex="0" class="paginate_button" onclick="getPage_'+page_type+'(event,'+i+', \''+page_type+'\');">'+(i+1)+'</a>';
+					str+='<li class="page-item"><a tabindex="0" class="page-link paginate_button" onclick="getPage_'+page_type+'(event,'+i+', \''+page_type+'\');">'+(i+1)+'</a></li>';
 				}
 			}
 		}else{	
 			for(var i=0;i<n_pages;i++){
 				if(i==current_page){
-					str+='<a tabindex="0" class="paginate_active" onclick="getPage_'+page_type+'(event,'+i+', \''+page_type+'\');">'+(i+1)+'</a>';
+					str+='<li class="page-item"><a tabindex="0" class="page-link paginate_active" onclick="getPage_'+page_type+'(event,'+i+', \''+page_type+'\');">'+(i+1)+'</a></li>';
 				}else{
-					str+='<a tabindex="0" class="paginate_button" onclick="getPage_'+page_type+'(event,'+i+', \''+page_type+'\');">'+(i+1)+'</a>';
+					str+='<li class="page-item"><a tabindex="0" class="page-link paginate_button" onclick="getPage_'+page_type+'(event,'+i+', \''+page_type+'\');">'+(i+1)+'</a></li>';
 				}
 			}
 		}
 		if(more_pages){
-			str+='... <a tabindex="0" class="paginate_button" onclick="getPage_'+page_type+'(event,'+Math.floor(data.count/num_display)+', \''+page_type+'\');">'+(Math.floor(data.count/num_display)+1)+'</a>';
+			str+='... <li class="page-item"><a tabindex="0" class="page-link paginate_button" onclick="getPage_'+page_type+'(event,'+Math.floor(data.count/num_display)+', \''+page_type+'\');">'+(Math.floor(data.count/num_display)+1)+'</a></li>';
 		}
 		if(Math.floor(data.count/num_display)==current_page){
 			//str+='<a tabindex="0" class="paginate_active" onclick="getPage_'+page_type+'(event,'+current_page+', \''+page_type+'\');">'+(current_page+1)+'</a>';
 		}
 		str+='</span>';
-		str+='<a onclick="getPage_'+page_type+'(event, '+(current_page+1)+', \''+page_type+'\');" tabindex="0" class="next paginate_button '+disabled_last+'" id="DataTables_Table_2_next">Siguiente</a>';
-		str+='<a onclick="getPage_'+page_type+'(event, '+Math.ceil(data.count/num_display-1)+', \''+page_type+'\');" tabindex="0" class="last paginate_button '+disabled_last+'" id="DataTables_Table_2_last">Ultimo</a>';
+		str+='<li class="page-item"><a onclick="getPage_'+page_type+'(event, '+(current_page+1)+', \''+page_type+'\');" tabindex="0" class="page-link next paginate_button '+disabled_last+'" id="DataTables_Table_2_next">Siguiente</a></li>';
+		str+='<li class="page-item"><a onclick="getPage_'+page_type+'(event, '+Math.ceil(data.count/num_display-1)+', \''+page_type+'\');" tabindex="0" class="page-link last paginate_button '+disabled_last+'" id="DataTables_Table_2_last">Último</a></li>';
 		$("#website_pagination_"+page_type).html(str);
 	}
 </script>

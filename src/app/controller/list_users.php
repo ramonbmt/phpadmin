@@ -185,8 +185,8 @@
 
             $this->table->objects[0]->populate(
                 array(
-                    "users.id"=>array("display"=>true,'link'=>true,'as'=>'No. Usuario',"sort"=>false,"mysqlas"=>"id"),
-                    "users.name"=>array("display"=>true,'link'=>true,'as'=>'Nombre',"sort"=>false,"searchfull"=>true,"mysqlas"=>"name","td"=>false),
+                    "users.id"=>array("display"=>true,'link'=>true,'as'=>'No. Usuario',"sort"=>true,"searchfull"=>true,"mysqlas"=>"id"),
+                    "users.name"=>array("display"=>true,'link'=>true,'as'=>'Nombre',"sort"=>true,"searchfull"=>true,"mysqlas"=>"name","td"=>false),
                     "users.lastname"=>array("display"=>true,'link'=>false,'as'=>'Apellido',"mysqlas"=>"lastname"),
                     "users.email"=>array("display"=>true,'link'=>false,'as'=>'Correo',"searchfull"=>false,"mysqlas"=>"email"),
                     "users.last_login"=>array("display"=>true,'link'=>false,'as'=>'Ultimo Acceso',"mysqlas"=>"last_login"),

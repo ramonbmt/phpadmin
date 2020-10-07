@@ -117,7 +117,7 @@ function tryLogin($user_name, $password){
 	global $user;
 	global $config;
 	//$login_result=$connection->query("select id from users where (user_name='?' or email='?') and password='?'",$user_name, $user_name, md5($password));
-	$login_result=$connection->query("select users.id,users.user_name,users.name,users.lastname,users.email,users.random,users.password,users.admin,
+	$login_result=$connection->query("SELECT users.id,users.user_name,users.name,users.lastname,users.email,users.random,users.password,users.admin,
 	users.supervisor,users.user_type,users.status,if('?'=1,users.permiso,user_type.permiso) as permiso
 	from users
 	left join user_type on users.user_type = user_type.id
@@ -126,7 +126,7 @@ function tryLogin($user_name, $password){
 	if(isset($login_result[0]['password'])&&validate_pw($password,$login_result[0]['password'])){
 		$value = md5(uniqid(mt_rand(), true));
 		//print_r($login_result);
-		$connection->query("update users set random='?', last_login=? where id=?",$value, 'now()', $login_result[0]['id']);
+		$connection->query("UPDATE users set random='?', last_login=? where id=?",$value, 'now()', $login_result[0]['id']);
 		//setcookie("l_cc", $login_result[0]['id'].';'.$value);
 		if($config['domain_cookie'] === "localhost"){
 			setcookie($config['cookie'], $login_result[0]['id'].';'.$value, time()+60*60*24*365, '/', "localhost", false);

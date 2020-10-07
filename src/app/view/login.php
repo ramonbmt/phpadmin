@@ -101,13 +101,13 @@
                         <form method="POST" action="" style="margin:0;">
                             <!-- Email input -->
                             <div class="form-outline mb-4">
-                                <input type="email" id="email" class="form-control" />
+                                <input name="email" type="email" id="email" class="form-control" />
                                 <label class="form-label" for="email">E-mail</label>
                             </div>
 
                             <!-- Password input -->
                             <div class="form-outline mb-4">
-                                <input type="password" id="password" class="form-control" />
+                                <input name="password" type="password" id="password" class="form-control" />
                                 <label class="form-label" for="password">Contraseña</label>
                             </div>
 

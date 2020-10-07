@@ -71,12 +71,12 @@
 		var page=0;
 		var args=<?php echo json_encode($this->args); ?>;
 		//var str=$(".ajax_search_<?php echo $this->page_type; ?>").val();
-		var sort=$.toJSON(sorting_<?php echo $this->page_type; ?>);
+		var sort=JSON.stringify(sorting_<?php echo $this->page_type; ?>);
 		var str2={};
 		$(".ajax_search_<?php echo $this->page_type; ?>").map(function(){
 			str2[$(this).attr("name")]=$(this).val();
 		});
-		var str=$.toJSON(str2);
+		var str=JSON.stringify(str2);
 		$.post('<?php echo $html->link($this->page_name).$str; ?>', {action:"search",ajax:1,type:'<?php echo $this->page_type; ?>',
 		page:page,args:args,str:str,sort:sort,table:"<?php echo $this->page_type; ?>"},
 		function(data) {

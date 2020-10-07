@@ -31,7 +31,7 @@ input[type=number]::-webkit-outer-spin-button {
     content: "›";
 }
 .breadcrumb-item.active {
-    color: var(--bs-warning);
+    color: var(--bmt-gray-dark);
 }
 
 .input-group > .form-control:focus {
