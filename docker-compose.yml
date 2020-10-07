@@ -3,10 +3,22 @@ services:
   # MYSQL
   db:
     image: mysql:5.7
-    expose:
-      - "3306"
+    restart: always
+    container_name: phpadmin_db_1
     environment:
-      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: 'db'
+      # So you don't have to use root, but you can if you like
+      MYSQL_USER: 'root'
+      # You can use whatever password you like
+      MYSQL_PASSWORD: '123456'
+      # Password for root access
+      MYSQL_ROOT_PASSWORD: '123456'
+    ports:
+      # <Port exposed> : < MySQL Port running inside container>
+      - '3306:3306'
+    expose:
+      # Opens port 3306 on the container
+      - '3306'
     volumes:
       - ./.docker/mysql/data:/var/lib/mysql
       - ./.docker/mysql/dump:/docker-entrypoint-initdb.d
