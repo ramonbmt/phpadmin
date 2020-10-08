@@ -36,23 +36,23 @@
 <?php
 	if(!empty($temp_arr)){
 		?>
-		<button style="margin-bottom:10px;" id="search_button" onclick="event.preventDefault();$('.dataTables_filter').show();$('#search_button').hide();" class="btn">
-		<i class="black-icons"></i>
-		<span>Buscar</span>
-		</button>
+        <div class="d-flex justify-content-center mb-2">
+            <button id="search_button" onclick="event.preventDefault();$('.dataTables_filter').show();$('#search_button').hide();" class="btn btn-info">
+                <i class="fas fa-search mr-2"></i>Buscar
+            </button>
+        </div>
 		<div style="display:none;margin-bottom:10px;width: 100%" class="dataTables_filter" id="DataTables_Table_0_filter">
-			<table align="left">
-				<tbody>
-
-		<?php foreach($temp_arr as $key=>$value){ ?>
-
-		<tr><td><label>Busqueda por <?php echo $value["as"]; ?>: &nbsp;  </label></td>
-		<td><input type="text" name="<?php echo $value["key"]; ?>" class="ajax_search_<?php echo $this->page_type; ?>"></td></tr>
-
-		<?php }	?>
-					<tr><td colspan="2" style="text-align: center; padding-left: 0px;" ><button onclick="event.preventDefault();$('.dataTables_filter').hide();$('#search_button').show();" class="btn btn-warning">Cancelar</button></td></tr>
-				</tbody>
-			</table>
+            <div class="d-flex flex-row">
+                <?php foreach($temp_arr as $key=>$value){ ?>
+                    <div class="input-group m-3 flex-wrap">
+                        <span class="input-group-text" id="<?php echo $value["key"]; ?>"><?php echo $value["as"]; ?></span>
+                        <input aria-describedby="basic-addon3" type="text" name="<?php echo $value["key"]; ?>" class="form-control ajax_search_<?php echo $this->page_type; ?>">
+                    </div>
+                <?php }	?>
+            </div>
+            <div class="d-flex justify-content-center mb-2">
+                <button onclick="event.preventDefault();$('.dataTables_filter').hide();$('#search_button').show();" class="btn btn-warning">Cerrar Búsqueda</button>
+            </div>
 		</div>
 		<?php
 	}else{

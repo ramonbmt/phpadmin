@@ -1,6 +1,6 @@
 <?php if (isset($breadcrumb) && sizeof($breadcrumb) > 0){ ?>
     <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
+        <ol class="breadcrumb shadow-5">
             <?php  
                 $bread_last=array_pop($breadcrumb);
                 foreach($breadcrumb as $value){

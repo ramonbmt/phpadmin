@@ -1,4 +1,7 @@
 <style>
+    body {
+        background-color: #fbfbfb;
+    }
     @media (min-width: 1400px) {
         main,
         header,
@@ -26,12 +29,12 @@
         >
             <i class="fas fa-bars fa-lg"></i>
         </button> -->
-        <button id="slim-toggler" type="button" class="btn btn-primary btn-floating">
+        <button id="slim-toggler" type="button" class="btn btn-primary btn-floating mr-4">
             <i id="slim-toggler-icon" class="fas fa-angle-left fa-lg"></i>
         </button>
         <div class="d-none d-md-flex input-group w-auto my-auto">
             <a href="<?php echo $html->link("index"); ?>" class="navbar-brand">
-                <img src="/img/logoBMT.png" style="object-fit: contain;" width="auto" height="40" alt="Logo">
+                <!-- <img src="/img/logoBMT.png" style="object-fit: contain;" width="auto" height="40" alt="Logo"> -->
                 BMT Admin
             </a>
         </div>

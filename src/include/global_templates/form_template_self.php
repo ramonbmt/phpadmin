@@ -80,20 +80,7 @@ $(document ).ajaxComplete(function(event, request, settings){
 	}());
 </script>
 <script>
-	$(function(){
-		$(".datepicker").datetimepicker({
-			//language:  'fr',
-			format: 'yyyy-mm-dd',
-			weekStart: 1,
-			todayBtn:  1,
-			autoclose: 1,
-			todayHighlight: 1,
-			startView: 2,
-			minView: 2,
-			forceParse: 0,
-			showMeridian: 1
-		});
-	});
+
 	
 	function searchSelectOpen(){
 		var str=$(this).val();

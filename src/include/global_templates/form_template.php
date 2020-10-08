@@ -8,7 +8,7 @@
 				<?php }else{ ?>
 				<div class="control-group">
 				<?php } ?>
-					<label class="control-label" for="<?php echo $key; ?>"><?php echo $value["as"]; ?></label>
+					<!-- <label class="control-label" for="<?php echo $key; ?>"><?php echo $value["as"]; ?></label> -->
 					<div class="controls">
 						<?php if(isset($value["link"])&&$value["link"]){
 							echo $foo($this->validator->getValue($key),$value,$key);
@@ -20,7 +20,10 @@
 							switch($value["type"]){
 								case "text":
 									?>
-									<input <?php echo $disabled; ?> type="<?php echo $value["type"]; ?>" name="<?php echo $key; ?>" value="<?php echo $this->validator->getValue($key); ?>" class="input-xlarge text-tip" id="<?php echo $key; ?>" <?php if(isset($value["tooltip"])) echo "title=\"".$value['tooltip']."\""; ?> <?php echo (isset($value["required"]) && !isset($value["showwhenequal"])) ? "required" : ""; ?> <?php if (isset($value["unique_id"])) {echo 'id="'.$value["unique_id"].'"';} ?> />
+                                    <div class="form-outline mb-4">
+                                        <input <?php echo $disabled; ?> type="text" id="<?php echo $key; ?>" name="<?php echo $key; ?>" class="form-control" value="<?php echo $this->validator->getValue($key); ?>" <?php if(isset($value["tooltip"])) echo "data-toggle=\"tooltip\" title=\"".$value['tooltip']."\""; ?> <?php echo (isset($value["required"]) && !isset($value["showwhenequal"])) ? "required" : ""; ?> <?php if (isset($value["unique_id"])) {echo 'id="'.$value["unique_id"].'"';} ?> />
+                                        <label class="form-label" for="<?php echo $key; ?>"><?php echo $value["as"]; ?></label>
+                                    </div>
 									<?php if(isset($value["linkto"])){ ?>
 										<script>
 											$(function(){
@@ -244,7 +247,22 @@
 								break;
 								case "date":
 									?>
-									<input <?php echo $disabled; ?> class="datePicker" type="text" name="<?php echo $key; ?>" value="<?php echo $this->validator->getValue($key); ?>" class="input-xlarge text-tip" id="<?php echo $key; ?>" <?php if(isset($value["tooltip"])) echo "title=\"".$value['tooltip']."\""; ?> <?php echo (isset($value["required"]) && !isset($value["showwhenequal"])) ? "required" : ""; ?> <?php if (isset($value["unique_id"])) {echo 'id="'.$value["unique_id"].'"';} ?> />
+                                    <div class="form-outline datepicker mb-4" data-format="yyyy-mm-dd" data-toggle-button="false">
+                                        <input
+                                            <?php echo $disabled; ?>
+                                            type="text"
+                                            class="form-control"
+                                            id="<?php echo $key; ?>"
+                                            data-toggle="datepicker"
+                                            name="<?php echo $key; ?>"
+                                            value="<?php echo $this->validator->getValue($key); ?>"
+                                            id="<?php echo $key; ?>"
+                                            <?php if(isset($value["tooltip"])) echo "title=\"".$value['tooltip']."\""; ?>
+                                            <?php echo (isset($value["required"]) && !isset($value["showwhenequal"])) ? "required" : ""; ?>
+                                            <?php if (isset($value["unique_id"])) {echo 'id="'.$value["unique_id"].'"';} ?>
+                                        />
+                                        <label for="<?php echo $key; ?>" class="form-label"><?php echo $value["as"]; ?></label>
+                                    </div>
 									<?php if(isset($value["linkto"])){ ?>
 										<script>
 											$(function(){
@@ -588,14 +606,18 @@
 								case "select":
 									// echo "<select ".$disabled." name='".$key."'>";
 									?>
-									<select <?php echo $disabled; ?> name="<?php echo $key; ?>" <?php if (isset($value["unique_id"])) {echo 'id="'.$value["unique_id"].'"';} ?> <?php echo (isset($value["required"]) && !isset($value["showwhenequal"])) ? "required" : ""; ?>>
-									<?php
-									foreach($value["select"] as $value2){
-										?>
-										<option <?php if($value2["id"]==$this->validator->getValue($key)) echo "selected='selected'" ?> value="<?php echo $value2["id"]; ?>"><?php echo $value2["name"]; ?></option>
-										<?php
-									}
-									echo "</select>"; ?>
+                                    <div class="mb-4">
+                                        <select class="select" data-clear-button="true" data-visible-options="15" data-filter="true" <?php echo $disabled; ?> name="<?php echo $key; ?>" <?php if (isset($value["unique_id"])) {echo 'id="'.$value["unique_id"].'"';} ?> <?php echo (isset($value["required"]) && !isset($value["showwhenequal"])) ? "required" : ""; ?>>
+                                            <?php
+                                                foreach($value["select"] as $value2){
+                                                    ?>
+                                                    <option <?php if($value2["id"]==$this->validator->getValue($key)) echo "selected='selected'" ?> value="<?php echo $value2["id"]; ?>"><?php echo $value2["name"]; ?></option>
+                                                    <?php
+                                                }
+                                            ?>
+                                        </select>
+                                        <label class="form-label select-label"><?php echo $value["as"] ?></label>
+                                    </div>
 									<?php if(isset($value["linkto"])){  ?>
 										<script>
 											$(function(){
@@ -755,9 +777,40 @@
 									</script>
 									<?php
 								break; */
+                                case "password":
+									?>
+                                    <div class="form-outline input-group mb-4">
+                                        <input <?php echo $disabled; ?> type="password" id="<?php echo $key; ?>" name="<?php echo $key; ?>" class="form-control" value="<?php echo $this->validator->getValue($key); ?>" <?php if(isset($value["tooltip"])) echo "data-toggle=\"tooltip\" title=\"".$value['tooltip']."\""; ?> <?php echo (isset($value["required"]) && !isset($value["showwhenequal"])) ? "required" : ""; ?> <?php if (isset($value["unique_id"])) {echo 'id="'.$value["unique_id"].'"';} ?> />
+                                        <script>
+                                            function togglePassword_<?php echo $key; ?>() {
+                                                if(document.getElementById('<?php echo $key; ?>').type == 'password'){
+                                                    document.getElementById('<?php echo $key; ?>').type = 'text';
+                                                }else {
+                                                    document.getElementById('<?php echo $key; ?>').type = 'password';
+                                                }
+                                                document.getElementById('eyeIcon-<?php echo $key; ?>').classList.toggle('fa-eye');
+                                                document.getElementById('eyeIcon-<?php echo $key; ?>').classList.toggle('fa-eye-slash');
+                                            }
+                                        </script>
+                                        <button
+                                            class="btn btn-outline-success"
+                                            type="button"
+                                            id="show-password"
+                                            data-ripple-color="dark"
+                                            onclick="togglePassword_<?php echo $key; ?>()"
+                                        >
+                                            <i id="eyeIcon-<?php echo $key; ?>" class="fas fa-eye fa-lg"></i>
+                                        </button>
+                                        <label class="form-label" for="<?php echo $key; ?>"><?php echo $value["as"]; ?></label>
+                                    </div>
+                                    <?php
+                                break;
 								default:
 									?>
-									<input <?php echo $disabled; ?> type="<?php echo $value["type"]; ?>" name="<?php echo $key; ?>" value="<?php echo $this->validator->getValue($key); ?>" class="input-xlarge text-tip" id="<?php echo $key; ?>" <?php if(isset($value["tooltip"])) echo "title=\"".$value['tooltip']."\""; ?> <?php echo (isset($value["required"]) && !isset($value["showwhenequal"])) ? "required" : ""; ?> <?php if (isset($value["unique_id"])) {echo 'id="'.$value["unique_id"].'"';} ?> />
+                                    <div class="form-outline mb-4">
+                                        <input <?php echo $disabled; ?> type="<?php echo $value["type"]; ?>" id="<?php echo $key; ?>" name="<?php echo $key; ?>" class="form-control" value="<?php echo $this->validator->getValue($key); ?>" <?php if(isset($value["tooltip"])) echo "data-toggle=\"tooltip\" title=\"".$value['tooltip']."\""; ?> <?php echo (isset($value["required"]) && !isset($value["showwhenequal"])) ? "required" : ""; ?> <?php if (isset($value["unique_id"])) {echo 'id="'.$value["unique_id"].'"';} ?> />
+                                        <label class="form-label" for="<?php echo $key; ?>"><?php echo $value["as"]; ?></label>
+                                    </div>
 										<?php if (isset($value["required"])) { ?>
 											<script>
 												$("form [name='<?php echo $key; ?>']").on('change invalid',function(){
@@ -814,34 +867,6 @@
 			$("#gostFormTrigger").submit();
 		});
 	}
-
-	$(function(){
-		$(".dateTimePicker").datetimepicker({
-			//language:  'fr',
-			weekStart: 1,
-			todayBtn:  1,
-			autoclose: 1,
-			todayHighlight: 1,
-			startView: 2,
-			forceParse: 0,
-			showMeridian: 1
-		});
-	});
-
-	$(function(){
-		$(".datePicker").datetimepicker({
-			//language:  'fr',
-			format: 'yyyy-mm-dd',
-			weekStart: 1,
-			todayBtn:  1,
-			autoclose: 1,
-			todayHighlight: 1,
-			startView: 2,
-			minView: 2,
-			forceParse: 0,
-			showMeridian: 1
-		});
-	});
 
 	function searchSelectOpen(){
 		var str=$(this).val();

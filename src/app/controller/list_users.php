@@ -157,7 +157,7 @@
                 array(
                     "name"=>array("as"=>"Nombre","type"=>"text"),
                     "lastname"=>array("as"=>"Apellido","type"=>"text"),
-                    "user_type"=>array("as"=>"Perfil:","type"=>"select","select"=>$perfiles),
+                    "user_type"=>array("as"=>"Perfil","type"=>"select","select"=>$perfiles),
                     "email"=>array("as"=>"Correo","type"=>"email"),
                     "password"=>array("as"=>"Contraseña","type"=>"password"),
                     "repassword"=>array("as"=>"Reingresar Contraseña","type"=>"password"),
