@@ -4,8 +4,8 @@ $admin_index=[
   "usuarios"=>[
     "path"=>$html->link("list_users"),
     "name"=>"Usuarios",
-    "icon"=>"fa-users",
-    "sn_icon"=>"users",
+    "icon"=>"fas fa-users",
+    "sn_icon"=>"fas fa-users",
     "checkPermiso"=>1,
     "submenu"=>[
       [
@@ -20,8 +20,8 @@ $admin_index=[
   "clientes"=>[
     "path"=>$html->link("list_clientes"),
     "name"=>"Clientes",
-    "icon"=>"user-tie",
-    "sn_icon"=>"user-tie",
+    "icon"=>"fas fa-user-tie",
+    "sn_icon"=>"fas fa-user-tie",
     "checkPermiso"=>4,
     "submenu"=>[
       [
@@ -54,7 +54,7 @@ $admin_index=[
     <ul class="sidenav-menu">
         <li class="sidenav-item">
             <a class="sidenav-link" href="<?php echo $html->link("admin_index"); ?>">
-                <i class="fas fa-chart-area fa-fw mr-3"></i><span>Inicio</span>
+                <i class="fas  fa-home mr-3"></i><span>Inicio</span>
             </a>
         </li>
         <?php foreach($admin_index as $key=>$value){
@@ -62,7 +62,7 @@ $admin_index=[
         ?>
         <li class="sidenav-item">
             <a class="sidenav-link" href="<?php if(!isset($value['submenu'])){echo $value['path']; }else{ echo '#!'; } ?>">
-                <i class="fas fa-cogs fa-fw mr-3"></i><span><?php echo $value["name"]; ?></span>
+                <i class="<?php echo $value["icon"]; ?> mr-3"></i><span><?php echo $value["name"]; ?></span>
             </a>
             <?php if(isset($value["submenu"])){ ?>
                 <ul class="sidenav-collapse">

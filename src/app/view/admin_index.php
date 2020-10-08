@@ -29,7 +29,7 @@ forceLogin("login");
                                     <div class="card">
                                         <div class="card-header card-header-<?php echo $value["color"]; ?> card-header-icon">
                                             <div class="card-icon">
-                                                <i class="material-icons"><?php echo $value["icon"]; ?></i>
+                                                <i class="<?php echo $value["icon"]; ?>"></i>
                                             </div>
                                             <!-- <p class="card-category" style="color:black"><?php echo $value["name"]; ?></p> -->
                                             <h4 style="color:black;"><?php echo $value["name"]; ?></h4>
