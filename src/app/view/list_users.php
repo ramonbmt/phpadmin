@@ -4,12 +4,10 @@
 			$u_id=$_GET["id"];
 			$this->edit->objects[0]->setId("display_user");
 			$this->tabbs->newTabb(
-				$this->edit->objects[0]->createFullString(),
-				"Datos"
+				$this->edit_btn.$this->edit->objects[0]->createFullString(),"Datos","fas fa-table fa-lg mr-2"
 			);
 			$this->tabbs->newTabb(
-				$this->form->objects[0]->createFullString(),
-				"Permisos"
+				$this->form->objects[0]->createFullString(),"Permisos","fas fa-lock fa-lg mr-2"
 			);
 			$this->data["edit"]=$this->tabbs->constructString();
 			$this->data["breadcrumb"]=array(

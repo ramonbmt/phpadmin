@@ -16,9 +16,10 @@
                         <div class="card-body py-3">
                             <div class="row">
                                 <div class="col-sm-6 text-center text-sm-left">
-                                    <button class="btn btn-primary btn-lg btn-floating float-left">
+                                    <button class="btn btn-primary btn-lg btn-floating float-left mr-3">
                                         <?php
                                             $icon = ""; foreach($admin_index as $value){
+                                                // echo $$value["path"].' - '.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
                                                 if($value["path"]=='http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']){
                                                     $icon = $value["icon"];
                                                 }
@@ -30,7 +31,7 @@
                                             }
                                         ?>
                                     </button>
-                                    <h5 class="mb-3 mb-sm-0 mt-2 ml-5"><?php echo $table_header; ?></h5>
+                                    <h5 class="mb-3 mb-sm-0 mt-2"><?php echo $table_header; ?></h5>
                                 </div>
                                 <div class="col-sm-6 text-center text-sm-right">
                                     <a href="<?php echo $table_link; ?>" type="button" class="btn btn-success mr-2">

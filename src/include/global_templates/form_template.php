@@ -256,7 +256,6 @@
                                             data-toggle="datepicker"
                                             name="<?php echo $key; ?>"
                                             value="<?php echo $this->validator->getValue($key); ?>"
-                                            id="<?php echo $key; ?>"
                                             <?php if(isset($value["tooltip"])) echo "title=\"".$value['tooltip']."\""; ?>
                                             <?php echo (isset($value["required"]) && !isset($value["showwhenequal"])) ? "required" : ""; ?>
                                             <?php if (isset($value["unique_id"])) {echo 'id="'.$value["unique_id"].'"';} ?>
@@ -793,13 +792,13 @@
                                             }
                                         </script>
                                         <button
-                                            class="btn btn-outline-success"
+                                            class="btn btn-outline-gray"
                                             type="button"
                                             id="show-password"
                                             data-ripple-color="dark"
                                             onclick="togglePassword_<?php echo $key; ?>()"
                                         >
-                                            <i id="eyeIcon-<?php echo $key; ?>" class="fas fa-eye fa-lg"></i>
+                                            <i id="eyeIcon-<?php echo $key; ?>" class="fas fa-eye-slash fa-lg"></i>
                                         </button>
                                         <label class="form-label" for="<?php echo $key; ?>"><?php echo $value["as"]; ?></label>
                                     </div>

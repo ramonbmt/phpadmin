@@ -1,4 +1,5 @@
 <script src="/js/mdb/mdb.min.js"></script>
+<script src="/js/cleditor.min.js"></script>
 
 <!-- Sidenav -->
 <script type="text/javascript">
@@ -16,12 +17,15 @@
         innerWidth = window.innerWidth;
 
         if (window.innerWidth < 1400) {
-        // instance.changeMode("over");
-        instance.changeMode("side");
-        instance.hide();
+            // instance.changeMode("over");
+            instance.changeMode("side");
+            instance.hide();
+            var icon = document.getElementById('slim-toggler-icon');
+            icon.classList.toggle("fa-angle-left");
+            icon.classList.toggle("fa-angle-right");
         } else {
-        instance.changeMode("side");
-        instance.show();
+            instance.changeMode("side");
+            instance.show();
         }
     };
 
@@ -31,15 +35,15 @@
     window.addEventListener("resize", setMode);
     
     document.getElementById('slim-toggler').addEventListener('click', () => {
-        instance.toggleSlim();
+
+        if (window.innerWidth < 1400) {
+            instance.toggle();
+        } else {
+            instance.toggleSlim();
+        }
         var icon = document.getElementById('slim-toggler-icon');
         icon.classList.toggle("fa-angle-left");
         icon.classList.toggle("fa-angle-right");
-        // if(icon.classList.contains('fa-angle-left')){
-        //     icon.classList.toggle("fa-angle-left");
-        // }else{
-
-        // }
     });
 
     //debounce

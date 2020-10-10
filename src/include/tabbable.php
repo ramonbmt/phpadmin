@@ -8,7 +8,7 @@ class tabbable{
 	function __construct($template){
 		$this->template = $template;
 	}
-	function newTabb($body,$title,$icon="blocks_images"){
+	function newTabb($body,$title,$icon="fas fa-table fa-lg"){
 		$this->tabbs[]=array(
 			'title'=>$title,
 			'body'=>$body,

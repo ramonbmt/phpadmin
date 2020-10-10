@@ -50,7 +50,7 @@
                     "users.name"=>array("as"=>"Nombre","link"=>false,"disabled"=>false,"mysqlas"=>"name"),
                     "lastname"=>array("as"=>"Apellido","link"=>false,"disabled"=>false),
                     "email"=>array("as"=>"Correo","link"=>false,"disabled"=>false),
-                    "date"=>array("as"=>"Fecha de creacion","link"=>false,"disabled"=>true),
+                    "date"=>array("as"=>"Fecha de creacion","link"=>false,"disabled"=>true,"type"=>"date"),
                     "last_login"=>array("as"=>"Ultima conexion","link"=>false,"disabled"=>true),
                     "users.user_type"=>array("display"=>false,"as"=>"Tipo de usuario id","link"=>false,"disabled"=>true,"mysqlas"=>"user_type_id"),
                     //"users.user_type"=>array("display"=>true,"as"=>"Tipo de usuario id","link"=>false,"disabled"=>true,"mysqlas"=>"user_type"),
@@ -68,6 +68,10 @@
                     ->getSql()
             );
             $this->edit->getLast()->setValidator($this->validator->objects[0]);
+            $this->edit_btn = '
+				<button onclick="startEdit(event,\'display_user\');" class="btn btn-primary btn-lg btn-floating float-right mx-2">
+					<i class="fas fa-edit"></i>
+				</button>';
             /// FIN TAB 1 ///
             
             /// INICIO TAB 2 ///

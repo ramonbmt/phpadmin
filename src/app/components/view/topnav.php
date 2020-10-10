@@ -2,19 +2,19 @@
     body {
         background-color: #fbfbfb;
     }
+    #slim-toggler-icon{
+        transition: transform 500ms;
+        transform: rotate(-360deg);
+    }
+    #slim-toggler-icon:hover{
+        transition: transform 500ms;
+        transform: rotate(360deg);
+    }
     @media (min-width: 1400px) {
         main,
         header,
         #main-navbar {
             /* padding-left: 240px; */
-        }
-        #slim-toggler-icon{
-            transition: transform 500ms;
-            transform: rotate(-360deg);
-        }
-        #slim-toggler-icon:hover{
-            transition: transform 500ms;
-            transform: rotate(360deg);
         }
     }
 </style>

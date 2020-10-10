@@ -294,7 +294,7 @@
 			);
 
 			$this->data["breadcrumb"]=array("admin_index","list_clientes");
-			$this->data["table_header"]="Inventario";
+			$this->data["table_header"]="Clientes";
 			$this->data["table_link"]=$this->html->link("list_clientes")."/Agregar";
 			$this->data["filename"]=$filename;
 
